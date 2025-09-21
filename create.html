@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+</head>
+<body style="background-color: aliceblue; font-family: 'Times New Roman', Times, serif;">
+    <h2 style="text-align:center; color:#0b63d6; padding-top:40px;">Create a New Task</h2>
+
+    <div style="text-align:center; margin-top:20px;">
+        <label>Task Name:</label><br>
+        <input type="text" id="taskName"><br><br>
+
+        <label>Task Hours:</label><br>
+        <input type="number" id="taskHours"><br><br>
+
+        <label>Description:</label><br>
+        <textarea id="taskDesc"></textarea><br><br>
+
+        <button onclick="saveTask()">Save</button>
+        <button onclick="window.location.href='main.html'">Back</button>
+    </div>
+
+    <script>
+        function saveTask() {
+            let name = document.getElementById("taskName").value.trim();
+            let hours = document.getElementById("taskHours").value.trim();
+            let desc = document.getElementById("taskDesc").value.trim();
+
+            if (!name || !hours) {
+                alert("Task name and hours are required!");
+                return;
+            }
+
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            let newTask = {
+                id: tasks.length + 1,
+                name: name,
+                hours: hours,
+                desc: desc
+            };
+
+            tasks.push(newTask);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            alert("Task saved successfully!");
+            window.location.href = "main.html";
+        }
+    </script>
+</body>
+</html>

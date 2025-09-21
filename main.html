@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplify Tasks</title>
+    <style>
+        body { background-color: aliceblue; font-family: 'Times New Roman', Times, serif; }
+        td {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+            border: 1px solid #ddd;
+        }
+        td p {
+            color: #0b63d6;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color:#0b63d6; text-align: center; padding-top: 60px;">Welcome to Simplify Tasks</h1>
+    <h4 style="color:#0b63d6; text-align: center;">You made the first step towards success</h4>
+    
+    <table align="center" cellspacing="20">
+        <tr>
+            <td onclick="openPage('create.html')"><p>Create Task</p></td>
+            <td onclick="openPage('view.html')"><p>View Tasks</p></td>
+            <td onclick="openPage('delete.html')"><p>Deleted Tasks</p></td>
+            <td onclick="openPage('completed.html')"><p>Completed Tasks</p></td>
+        </tr>
+    </table>
+
+    <h3 style="color:#0b63d6; text-align: center; padding-top: 10px;">Check Progress Here</h3>
+    <table align="center">
+        <tr><td>Active tasks count: <span id="activeCount">0</span></td></tr>
+        <tr><td>Deleted tasks count: <span id="deletedCount">0</span></td></tr>
+        <tr><td>Completed tasks count: <span id="completedCount">0</span></td></tr>
+    </table>
+    <script>
+        function openPage(page) {
+            window.location.href = page;
+        }
+        function updateCounts() {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            let deleted = JSON.parse(localStorage.getItem("deletedTasks")) || [];
+            let completed = JSON.parse(localStorage.getItem("completedTasks")) || [];
+            document.getElementById("activeCount").innerText = tasks.length;
+            document.getElementById("deletedCount").innerText = deleted.length;
+            document.getElementById("completedCount").innerText = completed.length;
+        }
+        updateCounts();
+    </script>
+</body>
+</html>

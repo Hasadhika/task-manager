@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Tasks</title>
+</head>
+<body style="background-color: aliceblue; font-family: 'Times New Roman', Times, serif;">
+    <h2 style="text-align:center; color:#0b63d6; padding-top:40px;">Active Tasks</h2>
+
+    <div id="taskList" style="width:80%; margin:auto; margin-top:20px;"></div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <button onclick="window.location.href='main.html'">Back</button>
+    </div>
+
+    <script>
+        function loadTasks() {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            let listDiv = document.getElementById("taskList");
+            listDiv.innerHTML = "";
+
+            if (tasks.length === 0) {
+                listDiv.innerHTML = "<p style='color:#0b63d6; text-align:center;'>No active tasks</p>";
+                return;
+            }
+
+            tasks.forEach((t, i) => {
+                let box = document.createElement("div");
+                box.style = "background:white; padding:10px; margin:10px; border:1px solid #0b63d6;";
+
+                box.innerHTML = `
+                    <p><b>Task ${t.id}</b> - ${t.name}</p>
+                    <p>Hours: ${t.hours}</p>
+                    <p>Description: ${t.desc}</p>
+                    <button onclick="completeTask(${i})">Mark Completed</button>
+                `;
+                listDiv.appendChild(box);
+            });
+        }
+
+        function completeTask(index) {
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            let completed = JSON.parse(localStorage.getItem("completedTasks")) || [];
+
+            let task = tasks.splice(index, 1)[0];
+            completed.push(task);
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            localStorage.setItem("completedTasks", JSON.stringify(completed));
+
+            loadTasks();
+        }
+
+        loadTasks();
+    </script>
+</body>
+</html>

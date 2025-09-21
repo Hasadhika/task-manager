@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="main" href="main.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        *{
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body style="background-color: aliceblue;">
+    <h1 style="color:#0b63d6; font-family: 'Times New Roman', Times, serif;text-align: center;width: 100%; padding-top: 60px;">Simplify Tasks</h1>
+    <h4 style="color:#0b63d6; font-family: 'Times New Roman', Times, serif;text-align: center;width:100%;">Maintain progress with ease</h4>
+    <form style="align-content: center; padding-left: 350px; margin-left: 80px;">
+        <label style="color:#0b63d6;width: 100%;padding-bottom: 5%;" >Name </label><br><br>
+        <input type="text" style="width: 50%;padding-bottom: 5px;" id="name"><br><br>
+        <label style="color:#0b63d6;width: 100%;padding-bottom: 5%;" >Email </label><br><br>
+        <input type="email" style="width: 50%;padding-bottom: 5px;" id="mail"><br><br>
+        <label style="color:#0b63d6;width: 100%;padding-bottom: 5%;"  id="hours">Target Hours</label><br><br>
+        <input type="number" style="width: 50%;padding-bottom: 5px;"><br><br>
+        <form><br>
+            <input type="button" value="Submit" onclick="validateForm()" style="margin-right: 10%; margin-left: 15%;background: aliceblue;margin-bottom: 1%;">
+        <input type="button" value="Cancel" style="background: aliceblue;">
+        </form>
+     <script>
+       function validateForm(){
+        const n=document.getElementById("name").value;
+        const e=document.getElementById("mail").value;  
+        const h=document.getElementById("hours").value;
+        if(n=="" || e=="" || h==""){
+            alert("All fields are required");
+        }
+        else{
+            window.location.href="main.html";
+        }
+       }
+    </script>
+</body>
+</html>
