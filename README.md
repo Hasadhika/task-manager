@@ -13,7 +13,7 @@
 ## Deployment
 
 The project is deployed on Vercel:  
-[Live Demo](https://your-vercel-url.vercel.app/)  
+[Live Demo](https://task-manager-alpha-blue.vercel.app/))  
 
 ## Usage
 
